@@ -32,7 +32,7 @@ const stories = [
 
 export default function StoriesSection() {
   return (
-    <section id="stories" className="py-20 border-t border-stone-100">
+    <section className="pb-16">
       <SectionHeader
         label="Stories"
         description="Articles, essays, and stories I want to share — experiences and ideas worth putting into words."

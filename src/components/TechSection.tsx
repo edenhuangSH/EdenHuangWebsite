@@ -21,7 +21,7 @@ const tools = [
 
 export default function TechSection() {
   return (
-    <section id="tech" className="py-20">
+    <section className="pb-16">
       <SectionHeader
         label="Tech"
         description="Tools and projects I've built — from quick experiments to production systems."

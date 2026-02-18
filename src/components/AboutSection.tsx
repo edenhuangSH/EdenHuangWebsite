@@ -2,7 +2,7 @@ import SectionHeader from "./SectionHeader";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="py-20 border-t border-stone-100">
+    <section className="pb-16">
       <SectionHeader label="About Me" />
       <div className="max-w-prose space-y-5 text-sm text-stone-600 leading-loose">
         <p>

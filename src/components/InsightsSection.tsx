@@ -29,7 +29,7 @@ const insights = [
 
 export default function InsightsSection() {
   return (
-    <section id="insights" className="py-20 border-t border-stone-100">
+    <section className="pb-16">
       <SectionHeader
         label="Insights"
         description="Research and observations across industries — patterns worth paying attention to."

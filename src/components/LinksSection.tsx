@@ -38,7 +38,7 @@ const links = [
 
 export default function LinksSection() {
   return (
-    <section id="links" className="py-20 border-t border-stone-100">
+    <section className="pb-16">
       <SectionHeader
         label="Links"
         description="Find me elsewhere on the internet."
@@ -52,12 +52,9 @@ export default function LinksSection() {
             rel="noopener noreferrer"
             className="group flex items-start gap-4 p-5 border border-stone-200 rounded-sm hover:border-stone-400 hover:shadow-sm transition-all duration-200 bg-white"
           >
-            {/* Icon */}
             <div className="mt-0.5 text-stone-400 group-hover:text-stone-700 transition-colors duration-200 shrink-0">
               {link.icon}
             </div>
-
-            {/* Content */}
             <div className="min-w-0">
               <div className="flex items-center gap-2 mb-1">
                 <p className="text-sm font-medium text-stone-800">{link.name}</p>
@@ -76,7 +73,6 @@ export default function LinksSection() {
         ))}
       </div>
 
-      {/* Footer note */}
       <p className="mt-16 text-xs text-stone-300 text-center">
         Eden Huang · {new Date().getFullYear()}
       </p>
