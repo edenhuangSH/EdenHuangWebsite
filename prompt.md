@@ -41,6 +41,14 @@ You can also mention that I enjoy vibe-coding. In particular, I like to develop 
 
 First polish the Tech sector with my hobbies and then put the AI Research Assistant as the first capstone project. 
 
+
+- New for Tech:
+
+This another product I built for my brother-in law. You can find the complete repo here: /Users/edenhuangsh/Documents/dev-projects/tomtor-ai (Github: https://github.com/edenhuangSH/tomtor-ai). The business deck is here: data/tech/Democratizing_Elite_Math.pdf. 
+
+This another product I built for my wife. You can find the complete repo here: /Users/edenhuangsh/Documents/dev-projects/Weari(Github: https://github.com/edenhuangSH/weari). The business deck is here: data/tech/Identity_Intelligence_Platform.pdf. 
+
+
 ------------------------------------------------------------------------------------------------------------------
 
 # Prompt 3
@@ -52,5 +60,25 @@ Raw content are all in the folder: data/content/articles. Now going through all 
 
 ------------------------------------------------------------------------------------------------------------------
 
+Why there're so many "Coming soon" under Insights? You should move those content to the website.
 
+Also, the reading experience of Insights and Stories is not good -- each piece should have tag(s) and then grouped into different topics (each can include multiple tags). Perhaps apply the second degree of side-bar for sub-topics. Make the UI look professional
+
+A new article is released! Make sure you feature it on Stories since this is the most recent: data/content/articles/ai-ethics/AI Adoption Is Less About Technology.docx
+
+------------------------------------------------------------------------------------------------------------------
+
+Create a feature to let users subscribe to new articles, insights and tech release as well as weekly newsletter. I need to have a flexibility to decide whether the release will be announced to the audience and in what format.
+
+Back to the Resend setup. I cannot find the information for the following:
+
+"
+RESEND_API_KEY          re_GECERqLp_NKz8RHjvnDR2joHVUsQbMs63
+RESEND_AUDIENCE_ID      10790196-15b2-461b-a1be-f74cee8e343d
+FROM_EMAIL              Eden Huang <onboarding@resend.dev>
+ADMIN_SECRET            Fyc!19890000
+NEXT_PUBLIC_BASE_URL    https://eden-huang.vercel.app
+"
+
+For each content, add a "share this" (or whatever language -- make it professional) functionality to share to mainstream channels and text messages (don't be too overwhelming tho)
 
