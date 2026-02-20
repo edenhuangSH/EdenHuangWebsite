@@ -50,6 +50,46 @@ body {
   animation: fadeInUp 0.5s ease forwards;
 }
 
+/* Insight prose styles */
+.prose-insight p {
+  margin-bottom: 1.1em;
+  line-height: 1.8;
+}
+.prose-insight p:last-child { margin-bottom: 0; }
+.prose-insight strong { font-weight: 600; color: #292524; }
+.prose-insight em { font-style: italic; }
+.prose-insight ul, .prose-insight ol {
+  padding-left: 1.25rem;
+  margin-bottom: 1em;
+}
+.prose-insight li { margin-bottom: 0.4em; line-height: 1.7; }
+.prose-insight ul { list-style-type: disc; }
+.prose-insight ol { list-style-type: decimal; }
+.prose-insight table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+  font-size: 0.8rem;
+}
+.prose-insight th, .prose-insight td {
+  border: 1px solid #e7e5e4;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+}
+.prose-insight th {
+  background: #fafaf9;
+  font-weight: 600;
+  color: #292524;
+}
+.prose-insight blockquote {
+  border-left: 2px solid #d6d3d1;
+  padding-left: 1rem;
+  color: #78716c;
+  font-style: italic;
+  margin: 1em 0;
+}
+
 /* Story prose styles */
 .prose-section p {
   margin-bottom: 1.2em;

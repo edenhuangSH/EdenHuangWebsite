@@ -48,22 +48,38 @@ export default async function StoryPage({
 
       {/* Header */}
       <header className="mb-10">
-        <div className="flex items-center gap-2 mb-4">
-          <span className="text-xs text-stone-400 border border-stone-200 px-2 py-0.5 rounded-full">
+        <div className="flex flex-wrap items-center gap-2 mb-4">
+          <span className="text-[10px] uppercase tracking-widest text-stone-400 font-medium">
             {story.category}
           </span>
-          <span className="text-xs text-stone-300">·</span>
-          <span className="text-xs text-stone-400">{langLabel[story.lang]}</span>
-          <span className="text-xs text-stone-300">·</span>
-          <span className="text-xs text-stone-400">{story.date}</span>
+          <span className="text-stone-200">·</span>
+          <span className="text-[10px] text-stone-400">{langLabel[story.lang]}</span>
+          <span className="text-stone-200">·</span>
+          <span className="text-[10px] text-stone-400">{story.date}</span>
         </div>
         <h1 className="text-xl font-semibold text-stone-900 leading-snug mb-2">
           {story.title}
         </h1>
-        {story.titleZh && story.lang === "bilingual" && (
-          <p className="text-sm text-stone-400">{story.titleZh}</p>
+        {story.titleZh && story.titleZh !== story.title && (
+          <p className="text-sm text-stone-400 mb-3">{story.titleZh}</p>
         )}
+        {/* Tags */}
+        <div className="flex flex-wrap gap-1.5 mt-3">
+          {story.tags.map((tag) => (
+            <span
+              key={tag}
+              className="text-[9px] px-1.5 py-0.5 rounded-full border border-stone-200 text-stone-400 bg-stone-50 leading-none"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
       </header>
+
+      {/* Excerpt */}
+      <p className="text-sm text-stone-500 leading-relaxed border-l-2 border-stone-200 pl-4 mb-10 italic">
+        {story.excerpt}
+      </p>
 
       {/* Content */}
       <div className="space-y-8 text-[15px] leading-[1.85] text-stone-600">

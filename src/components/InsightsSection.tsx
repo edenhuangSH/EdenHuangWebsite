@@ -1,215 +1,117 @@
+"use client";
+
+import { useState } from "react";
 import SectionHeader from "./SectionHeader";
+import Link from "next/link";
+import { insightArticles } from "@/lib/insights-articles";
 
-// ─── Types ───────────────────────────────────────────────────────────────────
+// ─── Static media / PDF items (non-article) ──────────────────────────────────
 
-type BaseItem = {
+type MediaItem = {
   title: string;
   titleZh?: string;
   date: string;
   lang: "en" | "zh" | "bilingual";
+  tags: string[];
+  category: string;
   description: string;
+  type: "pdf" | "audio" | "video";
+  link?: string;
+  mediaUrl?: string;
 };
 
-type ArticleItem = BaseItem & {
-  type: "article";
-  link: string;
-};
-
-type PdfItem = BaseItem & {
-  type: "pdf";
-  link: string;
-};
-
-type AudioItem = BaseItem & {
-  type: "audio";
-  mediaUrl: string;
-};
-
-type VideoItem = BaseItem & {
-  type: "video";
-  mediaUrl: string;
-};
-
-type InsightItem = ArticleItem | PdfItem | AudioItem | VideoItem;
-
-type Category = {
-  label: string;
-  items: InsightItem[];
-};
-
-// ─── Data ────────────────────────────────────────────────────────────────────
-
-const categories: Category[] = [
+const mediaItems: MediaItem[] = [
   {
-    label: "Geopolitics & Civilization",
-    items: [
-      {
-        type: "article",
-        title: "CIVIL Model: Capacity, Innovation, Value Integration, Institutional Flexibility, Long-term Resilience",
-        titleZh: "CIVIL模型：制度路径、科技主导与产业逻辑的多维竞合分析",
-        date: "2025",
-        lang: "zh",
-        description:
-          "A multi-dimensional framework assessing China, the US, the EU, and Russia across five dimensions — from state mobilization capacity to long-term social resilience. Includes bull/bear scenario projections through 2035.",
-        link: "/articles/civil-model.html",
-      },
-      {
-        type: "article",
-        title: "Nationalism Revival and 21st-Century Civilizational Change",
-        titleZh: "从民族主义复兴看21世纪文明结构变迁",
-        date: "2025",
-        lang: "zh",
-        description:
-          "An exploration of why the post-Cold War global order is fracturing — why multiculturalism is in retreat, how major powers are retreating into distinct civilizational paths, and what a stable future might require.",
-        link: "#",
-      },
-      {
-        type: "article",
-        title: "The Chinese Model: Governance and Development Analysis",
-        titleZh: "中国模式分析",
-        date: "2025",
-        lang: "zh",
-        description:
-          "An analytical breakdown of China's governance model — state mobilization, party-market relations, and long-run sustainability under demographic and geopolitical pressure.",
-        link: "#",
-      },
-      {
-        type: "article",
-        title: "Taiwan Policy and Identity",
-        titleZh: "中国的台湾政策和认同",
-        date: "2025",
-        lang: "zh",
-        description:
-          "An examination of China's Taiwan policy from both strategic and identity dimensions — including public sentiment, cross-strait economic interdependence, and the role of great-power competition.",
-        link: "#",
-      },
-      {
-        type: "article",
-        title: "Greater German Nationalism vs. East Asian Cultural Assimilation",
-        titleZh: "大德意志主义和东亚文化同化异同对比",
-        date: "2025",
-        lang: "zh",
-        description:
-          "A comparative historical analysis of Pan-German nationalism and East Asian cultural assimilation — asking why unified identity succeeded in some regions and devolved into catastrophe in others.",
-        link: "#",
-      },
-      {
-        type: "article",
-        title: "Scandinavia: Denmark, Sweden, Norway",
-        titleZh: "丹麦、瑞典、挪威",
-        date: "2025",
-        lang: "zh",
-        description:
-          "Why didn't Denmark — strategically placed between the North Sea and the Baltic — get absorbed by Germany or Sweden? A deep dive into geopolitical buffering, linguistic divergence, and the Nordic model of governance.",
-        link: "#",
-      },
-    ],
+    title: "Mastering Your AI Project Workflow",
+    titleZh: "AI 高效工作流：提示词工程实用指南",
+    date: "2024",
+    lang: "bilingual",
+    tags: ["AI", "Productivity", "Workflow"],
+    category: "Technology & AI",
+    description: "A practical guide to AI-native project workflows — covering prompt engineering, iterative refinement, task decomposition, and how to build an AI-augmented personal operating system.",
+    type: "video",
+    mediaUrl: "/media/ai-workflow.mp4",
   },
   {
-    label: "Business & Global Strategy",
-    items: [
-      {
-        type: "article",
-        title: "China's New Age of Discovery: The Going-Out Strategy",
-        titleZh: "出海——大航海时代",
-        date: "2025",
-        lang: "zh",
-        description:
-          "China's global expansion through the Belt and Road Initiative and industrial \"going-out\" strategy mirrors Europe's Age of Discovery — with strong state will, ideological cohesion, and an ambitious young generation driving the new wave.",
-        link: "#",
-      },
-      {
-        type: "article",
-        title: "Multi-City Comparison: Where to Live and Build in 2030",
-        titleZh: "全球化多地对比",
-        date: "2025",
-        lang: "zh",
-        description:
-          "A structured 7-dimension scoring framework comparing Boston, the SF Bay Area, Singapore, Shenzhen, Hong Kong, and European cities — across climate, career opportunity, investment channels, and global connectivity.",
-        link: "#",
-      },
-    ],
+    title: "The Business of Humanoid Robotics",
+    date: "2025",
+    lang: "en",
+    tags: ["AI", "Robotics", "Industry Analysis"],
+    category: "Technology & AI",
+    description: "An industry analysis of the humanoid robotics sector — market sizing, leading players (Figure, Boston Dynamics, Agility Robotics), hardware-software moats, and the path to mass deployment.",
+    type: "pdf",
+    link: "/articles/humanoid-robotics-business.pdf",
   },
   {
-    label: "Technology & AI",
-    items: [
-      {
-        type: "video",
-        title: "Mastering Your AI Project Workflow",
-        titleZh: "AI 高效工作流：提示词工程实用指南",
-        date: "2024",
-        lang: "bilingual",
-        description:
-          "A practical guide to AI-native project workflows — covering prompt engineering, iterative refinement, task decomposition, and how to build an AI-augmented personal operating system.",
-        mediaUrl: "/media/ai-workflow.mp4",
-      },
-      {
-        type: "pdf",
-        title: "The Business of Humanoid Robotics",
-        date: "2025",
-        lang: "en",
-        description:
-          "An industry analysis of the humanoid robotics sector — market sizing, leading players (Figure, Boston Dynamics, Agility Robotics), hardware-software moats, and the path to mass deployment.",
-        link: "/articles/humanoid-robotics-business.pdf",
-      },
-      {
-        type: "pdf",
-        title: "The Human Amplifier",
-        date: "2025",
-        lang: "en",
-        description:
-          "A framework for thinking about AI and robotics not as replacements for human labor but as amplifiers — redefining the relationship between cognitive capacity, physical capability, and economic value creation.",
-        link: "/articles/human-amplifier.pdf",
-      },
-    ],
+    title: "The Human Amplifier",
+    date: "2025",
+    lang: "en",
+    tags: ["AI", "Philosophy", "Future of Work"],
+    category: "Technology & AI",
+    description: "A framework for thinking about AI and robotics not as replacements for human labor but as amplifiers — redefining the relationship between cognitive capacity, physical capability, and economic value creation.",
+    type: "pdf",
+    link: "/articles/human-amplifier.pdf",
   },
   {
-    label: "Management",
-    items: [
-      {
-        type: "audio",
-        title: "Management Becomes Systems Design",
-        date: "2025",
-        lang: "en",
-        description:
-          "In an AI-native era, effective management is less about directing people and more about designing the systems — incentive structures, feedback loops, and information flows — that enable autonomous, high-quality output.",
-        mediaUrl: "/media/management-systems-design.m4a",
-      },
-      {
-        type: "pdf",
-        title: "Review-Driven Management",
-        date: "2025",
-        lang: "en",
-        description:
-          "A framework for structuring performance reviews as the core operating rhythm of a team — how to make feedback specific, actionable, and culturally embedded rather than a periodic HR ritual.",
-        link: "/articles/review-driven-management.pdf",
-      },
-    ],
+    title: "Management Becomes Systems Design",
+    date: "2025",
+    lang: "en",
+    tags: ["Management", "Systems Thinking", "Leadership"],
+    category: "Management",
+    description: "In an AI-native era, effective management is less about directing people and more about designing the systems — incentive structures, feedback loops, and information flows — that enable autonomous, high-quality output.",
+    type: "audio",
+    mediaUrl: "/media/management-systems-design.m4a",
   },
   {
-    label: "Investment & Markets",
-    items: [
-      {
-        type: "pdf",
-        title: "Gold Market Analysis",
-        date: "Feb 2025",
-        lang: "en",
-        description:
-          "A macro-driven analysis of gold's role as a reserve asset in 2025 — covering central bank accumulation trends, real rate dynamics, dollar weaponization concerns, and the geopolitical premium baked into the price.",
-        link: "/articles/gold-report-feb2025.pdf",
-      },
-      {
-        type: "pdf",
-        title: "US–China Equity Market",
-        date: "2025",
-        lang: "en",
-        description:
-          "A comparative equity market analysis across US and Chinese markets — sector rotation, valuation divergence, earnings expectations, and capital flow implications under ongoing tech decoupling.",
-        link: "/articles/us-china-equity.pdf",
-      },
-    ],
+    title: "Review-Driven Management",
+    date: "2025",
+    lang: "en",
+    tags: ["Management", "Performance", "Frameworks"],
+    category: "Management",
+    description: "A framework for structuring performance reviews as the core operating rhythm of a team — how to make feedback specific, actionable, and culturally embedded rather than a periodic HR ritual.",
+    type: "pdf",
+    link: "/articles/review-driven-management.pdf",
+  },
+  {
+    title: "Gold Market Analysis — Feb 2025",
+    date: "Feb 2025",
+    lang: "en",
+    tags: ["Investment", "Macro", "Gold", "Markets"],
+    category: "Investment & Markets",
+    description: "A macro-driven analysis of gold's role as a reserve asset in 2025 — covering central bank accumulation trends, real rate dynamics, dollar weaponization concerns, and the geopolitical premium baked into the price.",
+    type: "pdf",
+    link: "/articles/gold-report-feb2025.pdf",
+  },
+  {
+    title: "US–China Equity Market",
+    date: "2025",
+    lang: "en",
+    tags: ["Investment", "China", "US", "Equity", "Markets"],
+    category: "Investment & Markets",
+    description: "A comparative equity market analysis across US and Chinese markets — sector rotation, valuation divergence, earnings expectations, and capital flow implications under ongoing tech decoupling.",
+    type: "pdf",
+    link: "/articles/us-china-equity.pdf",
   },
 ];
+
+// ─── All categories (ordered) ─────────────────────────────────────────────────
+
+const ALL_CATEGORIES = [
+  "Geopolitics & Civilization",
+  "Business & Global Strategy",
+  "Technology & AI",
+  "Management",
+  "Investment & Markets",
+] as const;
+
+// ─── Helper: collect all unique tags ─────────────────────────────────────────
+
+const allTags = Array.from(
+  new Set([
+    ...insightArticles.flatMap((a) => a.tags),
+    ...mediaItems.flatMap((m) => m.tags),
+  ])
+).sort();
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
@@ -219,41 +121,69 @@ const langLabel: Record<string, string> = {
   bilingual: "EN / 中文",
 };
 
-function TypeBadge({ type }: { type: InsightItem["type"] }) {
-  const map: Record<string, string> = {
-    article: "Article",
-    pdf: "PDF",
-    audio: "Audio",
-    video: "Video",
-  };
+function Tag({ label }: { label: string }) {
   return (
-    <span className="text-[10px] uppercase tracking-widest text-stone-400 font-medium">
-      {map[type]}
+    <span className="text-[9px] px-1.5 py-0.5 rounded-full border border-stone-200 text-stone-400 bg-stone-50 leading-none">
+      {label}
     </span>
   );
 }
 
-function ItemLink({ item }: { item: ArticleItem | PdfItem }) {
-  const isExternal = !item.link.startsWith("#");
+function TypeIcon({ type }: { type: "article" | "pdf" | "audio" | "video" }) {
+  const icons = { article: "✦", pdf: "↗", audio: "♬", video: "▶" };
+  return <span className="text-[10px] text-stone-300 mr-1">{icons[type]}</span>;
+}
+
+function ArticleCard({ article }: { article: (typeof insightArticles)[number] }) {
   return (
-    <a
-      href={item.link}
-      target={isExternal ? "_blank" : undefined}
-      rel={isExternal ? "noopener noreferrer" : undefined}
-      className={`inline-flex items-center gap-1 text-xs text-stone-400 hover:text-stone-700 transition-colors mt-2 ${
-        item.link === "#" ? "pointer-events-none opacity-40" : ""
-      }`}
+    <Link
+      href={`/insights/${article.slug}`}
+      className="group flex flex-col gap-1.5 py-4 border-b border-stone-100 last:border-0 hover:bg-stone-50/60 -mx-3 px-3 rounded-sm transition-colors duration-150"
     >
-      {item.link === "#" ? "Coming soon" : item.type === "pdf" ? "Open PDF ↗" : "Read ↗"}
-    </a>
+      <div className="flex items-center gap-2">
+        <TypeIcon type="article" />
+        <span className="text-[10px] uppercase tracking-widest text-stone-400 font-medium">
+          Article
+        </span>
+        <span className="text-stone-200">·</span>
+        <span className="text-[10px] text-stone-400">{langLabel[article.lang]}</span>
+        <span className="text-stone-200">·</span>
+        <span className="text-[10px] text-stone-400">{article.date}</span>
+      </div>
+
+      <h3 className="text-sm font-semibold text-stone-800 leading-snug group-hover:text-stone-600 transition-colors">
+        {article.title}
+      </h3>
+      {article.titleZh && article.titleZh !== article.title && (
+        <p className="text-xs text-stone-400 leading-snug">{article.titleZh}</p>
+      )}
+      <p className="text-xs text-stone-500 leading-relaxed">{article.excerpt}</p>
+
+      <div className="flex flex-wrap gap-1 mt-0.5">
+        {article.tags.map((t) => (
+          <Tag key={t} label={t} />
+        ))}
+      </div>
+
+      <span className="text-xs text-stone-400 group-hover:text-stone-600 transition-colors mt-0.5">
+        Read →
+      </span>
+    </Link>
   );
 }
 
-function InsightCard({ item }: { item: InsightItem }) {
+function MediaCard({ item }: { item: MediaItem }) {
+  const isVideo = item.type === "video";
+  const isAudio = item.type === "audio";
+  const isPdf = item.type === "pdf";
+
   return (
-    <div className="border-b border-stone-100 pb-6 last:border-0 last:pb-0">
-      <div className="flex items-center gap-2 mb-1.5">
-        <TypeBadge type={item.type} />
+    <div className="flex flex-col gap-1.5 py-4 border-b border-stone-100 last:border-0">
+      <div className="flex items-center gap-2">
+        <TypeIcon type={item.type} />
+        <span className="text-[10px] uppercase tracking-widest text-stone-400 font-medium">
+          {item.type.toUpperCase()}
+        </span>
         <span className="text-stone-200">·</span>
         <span className="text-[10px] text-stone-400">{langLabel[item.lang]}</span>
         <span className="text-stone-200">·</span>
@@ -264,39 +194,39 @@ function InsightCard({ item }: { item: InsightItem }) {
         {item.title}
       </h3>
       {item.titleZh && (
-        <p className="text-xs text-stone-400 mt-0.5">{item.titleZh}</p>
+        <p className="text-xs text-stone-400 leading-snug">{item.titleZh}</p>
       )}
-      <p className="text-xs text-stone-500 leading-relaxed mt-2">
-        {item.description}
-      </p>
+      <p className="text-xs text-stone-500 leading-relaxed">{item.description}</p>
 
-      {/* Embedded Video */}
-      {item.type === "video" && (
-        <div className="mt-4 rounded-sm overflow-hidden border border-stone-200">
-          <video
-            controls
-            preload="metadata"
-            className="w-full max-h-64 bg-stone-900"
-          >
+      <div className="flex flex-wrap gap-1 mt-0.5">
+        {item.tags.map((t) => (
+          <Tag key={t} label={t} />
+        ))}
+      </div>
+
+      {isVideo && item.mediaUrl && (
+        <div className="mt-2 rounded-sm overflow-hidden border border-stone-200">
+          <video controls preload="metadata" className="w-full max-h-56 bg-stone-900">
             <source src={item.mediaUrl} type="video/mp4" />
-            Your browser does not support video playback.
           </video>
         </div>
       )}
-
-      {/* Embedded Audio */}
-      {item.type === "audio" && (
-        <div className="mt-3">
+      {isAudio && item.mediaUrl && (
+        <div className="mt-2">
           <audio controls preload="metadata" className="w-full h-9">
             <source src={item.mediaUrl} type="audio/mp4" />
-            Your browser does not support audio playback.
           </audio>
         </div>
       )}
-
-      {/* Link for article / pdf */}
-      {(item.type === "article" || item.type === "pdf") && (
-        <ItemLink item={item} />
+      {isPdf && item.link && (
+        <a
+          href={item.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-xs text-stone-400 hover:text-stone-700 transition-colors mt-0.5"
+        >
+          Open PDF ↗
+        </a>
       )}
     </div>
   );
@@ -304,7 +234,39 @@ function InsightCard({ item }: { item: InsightItem }) {
 
 // ─── Main component ───────────────────────────────────────────────────────────
 
-export default function InsightsSection() {
+export default function InsightsSection({
+  activeCategory,
+  activeTag,
+}: {
+  activeCategory?: string;
+  activeTag?: string;
+}) {
+  const [selectedTag, setSelectedTag] = useState<string | null>(activeTag ?? null);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(
+    activeCategory ?? null
+  );
+
+  // Build unified list of items with category
+  const filteredArticles = insightArticles.filter((a) => {
+    if (selectedCategory && a.category !== selectedCategory) return false;
+    if (selectedTag && !a.tags.includes(selectedTag)) return false;
+    return true;
+  });
+
+  const filteredMedia = mediaItems.filter((m) => {
+    if (selectedCategory && m.category !== selectedCategory) return false;
+    if (selectedTag && !m.tags.includes(selectedTag)) return false;
+    return true;
+  });
+
+  // Group by category
+  const categoriesInView = ALL_CATEGORIES.filter((cat) => {
+    if (selectedCategory && cat !== selectedCategory) return false;
+    const hasArticle = filteredArticles.some((a) => a.category === cat);
+    const hasMedia = filteredMedia.some((m) => m.category === cat);
+    return hasArticle || hasMedia;
+  });
+
   return (
     <section className="py-12">
       <SectionHeader
@@ -312,20 +274,89 @@ export default function InsightsSection() {
         description="Research, frameworks, and analysis across geopolitics, technology, business, and markets."
       />
 
-      <div className="space-y-10">
-        {categories.map((cat) => (
-          <div key={cat.label}>
-            <p className="text-[10px] uppercase tracking-widest text-stone-400 font-semibold mb-4 border-b border-stone-100 pb-2">
-              {cat.label}
-            </p>
-            <div className="space-y-6">
-              {cat.items.map((item) => (
-                <InsightCard key={item.title} item={item} />
-              ))}
-            </div>
-          </div>
-        ))}
+      {/* ── Filter bar ── */}
+      <div className="mb-8 space-y-3">
+        {/* Category filters */}
+        <div className="flex flex-wrap gap-1.5">
+          <button
+            onClick={() => setSelectedCategory(null)}
+            className={`text-[10px] px-2.5 py-1 rounded-full border transition-colors ${
+              !selectedCategory
+                ? "bg-stone-800 text-white border-stone-800"
+                : "border-stone-200 text-stone-500 hover:border-stone-400"
+            }`}
+          >
+            All Topics
+          </button>
+          {ALL_CATEGORIES.map((cat) => (
+            <button
+              key={cat}
+              onClick={() =>
+                setSelectedCategory(selectedCategory === cat ? null : cat)
+              }
+              className={`text-[10px] px-2.5 py-1 rounded-full border transition-colors ${
+                selectedCategory === cat
+                  ? "bg-stone-800 text-white border-stone-800"
+                  : "border-stone-200 text-stone-500 hover:border-stone-400"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {/* Tag filters */}
+        <div className="flex flex-wrap gap-1">
+          {allTags.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => setSelectedTag(selectedTag === tag ? null : tag)}
+              className={`text-[9px] px-1.5 py-0.5 rounded-full border transition-colors ${
+                selectedTag === tag
+                  ? "bg-stone-600 text-white border-stone-600"
+                  : "border-stone-200 text-stone-400 hover:border-stone-400"
+              }`}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
       </div>
+
+      {/* ── Content grouped by category ── */}
+      {categoriesInView.length === 0 ? (
+        <p className="text-sm text-stone-400 py-8 text-center">No items match this filter.</p>
+      ) : (
+        <div className="space-y-10">
+          {categoriesInView.map((cat) => {
+            const catArticles = filteredArticles.filter((a) => a.category === cat);
+            const catMedia = filteredMedia.filter((m) => m.category === cat);
+
+            return (
+              <div key={cat} id={cat}>
+                <div className="flex items-center gap-3 mb-4">
+                  <p className="text-[10px] uppercase tracking-widest text-stone-400 font-semibold">
+                    {cat}
+                  </p>
+                  <div className="flex-1 h-px bg-stone-100" />
+                  <span className="text-[10px] text-stone-300">
+                    {catArticles.length + catMedia.length} items
+                  </span>
+                </div>
+
+                <div>
+                  {catArticles.map((article) => (
+                    <ArticleCard key={article.slug} article={article} />
+                  ))}
+                  {catMedia.map((item) => (
+                    <MediaCard key={item.title} item={item} />
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </section>
   );
 }

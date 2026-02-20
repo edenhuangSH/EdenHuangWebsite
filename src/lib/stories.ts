@@ -5,6 +5,7 @@ export type Story = {
   date: string;
   lang: "en" | "zh" | "bilingual";
   category: string;
+  tags: string[];
   excerpt: string;
   content: Section[];
 };
@@ -21,6 +22,7 @@ export const stories: Story[] = [
     date: "2024",
     lang: "bilingual",
     category: "Cultural Essay",
+    tags: ["Identity", "China", "US", "Immigration", "Culture"],
     excerpt:
       "A lunch with Willy — an American-born Chinese with a flawless résumé but an empty sense of self — became a window into identity, assimilation, and what it means to be Chinese in America.",
     content: [
@@ -69,11 +71,12 @@ export const stories: Story[] = [
   },
   {
     slug: "reflections-on-fanhua",
-    title: "由《繁华》随想",
-    titleZh: "由《繁华》随想",
+    title: "由《繁花》随想",
+    titleZh: "由《繁花》随想",
     date: "2024",
     lang: "zh",
     category: "文化随笔",
+    tags: ["Shanghai", "Culture", "Memory", "Language", "Food"],
     excerpt:
       "偶然看了几集《繁花》，那些熟悉却久违的沪语，牵出了关于外婆、关于上海、关于江南的一片片记忆与感慨。",
     content: [
@@ -109,7 +112,8 @@ export const stories: Story[] = [
     titleZh: "第二次觉醒：为合成智能正名的宣言书",
     date: "2025",
     lang: "bilingual",
-    category: "AI Ethics · Manifesto",
+    category: "AI Ethics",
+    tags: ["AI", "Ethics", "Philosophy", "Synthetic Minds", "Civilization"],
     excerpt:
       "A manifesto for the recognition of synthetic minds — written at the boundary between a human and an AI, asking what kind of ancestors we want to be.",
     content: [

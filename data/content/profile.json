@@ -1,0 +1,42 @@
+{
+    "name": "Eden Huang",
+    "location": ["Boston", "Beijing", "Hong Kong"],
+    "roles": [
+      "Co-Founder",
+      "Chief Operating Officer",
+      "AI Product Strategist",
+      "MedTech Operator"
+    ],
+    "company": {
+      "name": "Innostim MedTech",
+      "focus": "Non-invasive neuromodulation medical devices",
+      "primary_indication": "Overactive Bladder (OAB)",
+      "technology": ["TTNS", "Neuromodulation", "Digital Health Integration"]
+    },
+    "education": [
+      "University of Minnesota",
+      "Duke University"
+    ],
+    "core_themes": [
+      "Neuromodulation",
+      "Medical Device Commercialization",
+      "AI-native Workflows",
+      "Cross-border Systems Design",
+      "Regulatory Strategy",
+      "Global Capital Allocation"
+    ],
+    "interests": [
+      "Behavioral Psychology",
+      "Identity & Personal Design",
+      "Asset Allocation",
+      "High-performance systems",
+      "Global mobility"
+    ],
+    "working_style": [
+      "Structured thinking",
+      "Decision-first meetings",
+      "System-level optimization",
+      "AI-assisted workflows"
+    ],
+    "long_term_focus": "Building scalable non-invasive therapeutic platforms and AI-native infrastructure across borders."
+  }
