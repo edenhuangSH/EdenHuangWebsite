@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getStory, stories } from "@/lib/stories";
+import ShareBar from "@/components/ShareBar";
 import type { Metadata } from "next";
 
 export async function generateStaticParams() {
@@ -75,6 +76,9 @@ export default async function StoryPage({
           ))}
         </div>
       </header>
+
+      {/* Share */}
+      <ShareBar title={story.title} path={`/stories/${slug}`} />
 
       {/* Excerpt */}
       <p className="text-sm text-stone-500 leading-relaxed border-l-2 border-stone-200 pl-4 mb-10 italic">

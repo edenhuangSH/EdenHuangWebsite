@@ -2,6 +2,7 @@ import { getInsightArticle, insightArticles } from "@/lib/insights-articles";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
+import ShareBar from "@/components/ShareBar";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -68,6 +69,9 @@ export default async function InsightArticlePage({ params }: Props) {
           </span>
         ))}
       </div>
+
+      {/* Share */}
+      <ShareBar title={article.title} path={`/insights/${slug}`} />
 
       {/* Excerpt */}
       <p className="text-sm text-stone-500 leading-relaxed border-l-2 border-stone-200 pl-4 mb-10 italic">
