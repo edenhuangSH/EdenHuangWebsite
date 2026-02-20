@@ -1,65 +1,57 @@
+import Link from "next/link";
+import { stories } from "@/lib/stories";
 import SectionHeader from "./SectionHeader";
 
-const stories = [
-  {
-    title: "Story or Article Title",
-    category: "Essay",
-    date: "Feb 2026",
-    excerpt:
-      "The opening line or a compelling excerpt from your story. Make the reader want to continue...",
-    link: "#",
-    readTime: "5 min read",
-  },
-  {
-    title: "A Reflection on Something",
-    category: "Reflection",
-    date: "Jan 2026",
-    excerpt:
-      "A thought, memory, or experience you've distilled into words. Personal writing that feels true.",
-    link: "#",
-    readTime: "3 min read",
-  },
-  {
-    title: "Notes on a Journey",
-    category: "Travel",
-    date: "Nov 2025",
-    excerpt:
-      "What you saw, what surprised you, what stayed with you long after you returned.",
-    link: "#",
-    readTime: "7 min read",
-  },
-];
+const langLabel: Record<string, string> = {
+  en: "English",
+  zh: "中文",
+  bilingual: "EN / 中文",
+};
 
 export default function StoriesSection() {
   return (
-    <section className="pb-16">
+    <section className="py-12">
       <SectionHeader
         label="Stories"
-        description="Articles, essays, and stories I want to share — experiences and ideas worth putting into words."
+        description="Personal essays, cultural reflections, and things that stayed with me."
       />
-      <div className="grid gap-6">
+
+      <div className="space-y-6">
         {stories.map((story) => (
-          <a
-            key={story.title}
-            href={story.link}
-            className="group block"
+          <Link
+            key={story.slug}
+            href={`/stories/${story.slug}`}
+            className="group block border border-stone-200 rounded-sm p-5 bg-white hover:border-stone-400 hover:shadow-sm transition-all duration-200"
           >
-            <div className="border-l-2 border-stone-200 group-hover:border-stone-500 pl-5 transition-colors duration-300">
-              <div className="flex items-center gap-2 mb-2 flex-wrap">
-                <span className="text-xs text-stone-400 bg-stone-100 px-2 py-0.5 rounded-full">
-                  {story.category}
-                </span>
-                <span className="text-xs text-stone-300">·</span>
-                <span className="text-xs text-stone-400">{story.date}</span>
-                <span className="text-xs text-stone-300">·</span>
-                <span className="text-xs text-stone-400">{story.readTime}</span>
-              </div>
-              <h3 className="text-sm font-medium text-stone-800 group-hover:text-stone-900 mb-2 transition-colors">
-                {story.title}
-              </h3>
-              <p className="text-sm text-stone-500 leading-relaxed">{story.excerpt}</p>
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-[10px] uppercase tracking-widest text-stone-400 font-medium">
+                {story.category}
+              </span>
+              <span className="text-stone-200">·</span>
+              <span className="text-[10px] text-stone-400">{langLabel[story.lang]}</span>
+              <span className="text-stone-200">·</span>
+              <span className="text-[10px] text-stone-400">{story.date}</span>
             </div>
-          </a>
+
+            <h2 className="text-sm font-semibold text-stone-800 mb-1.5 group-hover:text-stone-600 transition-colors">
+              {story.title}
+              {story.titleZh && story.lang === "zh" && (
+                <></>
+              )}
+            </h2>
+            {story.titleZh && story.lang === "bilingual" && (
+              <p className="text-xs text-stone-400 mb-2">{story.titleZh}</p>
+            )}
+
+            <p className="text-xs text-stone-500 leading-relaxed line-clamp-3">
+              {story.excerpt}
+            </p>
+
+            <span className="inline-flex items-center gap-1 mt-3 text-xs text-stone-400 group-hover:text-stone-600 transition-colors">
+              Read
+              <span className="group-hover:translate-x-0.5 transition-transform duration-200">→</span>
+            </span>
+          </Link>
         ))}
       </div>
     </section>
