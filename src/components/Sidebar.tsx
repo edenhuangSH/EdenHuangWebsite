@@ -3,6 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import dynamic from "next/dynamic";
+
+const SubscribeModal = dynamic(() => import("./SubscribeModal"), { ssr: false });
 
 const navItems = [
   { href: "/tech", label: "Tech" },
@@ -31,6 +34,7 @@ const storiesSubNav = [
 export default function Sidebar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showSubscribe, setShowSubscribe] = useState(false);
 
   const isActive = (href: string) =>
     pathname === href || pathname.startsWith(href + "/");
@@ -40,6 +44,9 @@ export default function Sidebar() {
 
   return (
     <>
+      {/* ── Subscribe Modal ── */}
+      {showSubscribe && <SubscribeModal onClose={() => setShowSubscribe(false)} />}
+
       {/* ── Desktop Sidebar ── */}
       <aside className="hidden lg:flex fixed left-0 top-0 h-screen w-56 flex-col justify-between px-8 py-12 border-r border-stone-200 bg-stone-50 z-40">
         {/* Name / Logo */}
@@ -126,7 +133,16 @@ export default function Sidebar() {
           </nav>
         </div>
 
-        <p className="text-xs text-stone-300">© {new Date().getFullYear()}</p>
+        <div className="space-y-3">
+          <button
+            onClick={() => setShowSubscribe(true)}
+            className="flex items-center gap-1.5 text-xs text-stone-400 hover:text-stone-700 transition-colors group"
+          >
+            <span className="group-hover:scale-110 transition-transform duration-200">✦</span>
+            <span>Subscribe</span>
+          </button>
+          <p className="text-xs text-stone-300">© {new Date().getFullYear()}</p>
+        </div>
       </aside>
 
       {/* ── Mobile Header ── */}
@@ -165,6 +181,15 @@ export default function Sidebar() {
 
         {menuOpen && (
           <nav className="border-t border-stone-100 py-3 px-6 flex flex-col gap-1 bg-stone-50">
+            {/* Mobile Subscribe */}
+            <button
+              onClick={() => { setMenuOpen(false); setShowSubscribe(true); }}
+              className="flex items-center gap-1.5 text-sm py-2 text-stone-400"
+            >
+              <span>✦</span>
+              <span>Subscribe</span>
+            </button>
+            <div className="border-t border-stone-100 my-1" />
             {navItems.map((item) => (
               <div key={item.href}>
                 <Link
