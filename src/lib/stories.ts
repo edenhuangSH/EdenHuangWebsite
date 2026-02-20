@@ -17,6 +17,115 @@ export type Section = {
 
 export const stories: Story[] = [
   {
+    slug: "ai-adoption-optimize",
+    title: "AI Adoption Is Less About Technology And More About What You Optimize For",
+    date: "2026",
+    lang: "en",
+    category: "AI Ethics",
+    tags: ["AI", "Philosophy", "Productivity", "Identity", "Relationships"],
+    excerpt:
+      "When people debate AI, it often sounds like ideology. But in real life, the difference is far more subtle — it's not about being pro- or anti-AI. It's about what you instinctively optimize for.",
+    content: [
+      {
+        body: `<p>When people debate AI, it often sounds like ideology: "AI is the future." "AI is dangerous." "You're falling behind." "You're losing your humanity."</p>
+<p>But in real life — especially inside relationships — the difference is usually far more subtle.</p>
+<p>Take Ethan and Sophia. Both use AI. Both believe it's transformative. Neither thinks it's going away. And yet, their energy around it feels different.</p>
+<p>Ethan is experimenting with AI-native workflows, vibe-coding on weekends, building small internal tools "just to see what's possible." He experiences AI as acceleration — cognitive leverage.</p>
+<p>Sophia uses AI too. She'll draft outlines, ask for perspective, brainstorm ideas. But she hasn't vibe-coded. She doesn't feel urgency about squeezing every productivity gain out of her life. AI is helpful — not central.</p>
+<p>No one is anti-anything. They just optimize for different things.</p>`,
+      },
+      {
+        heading: "1. Different Temperatures, Not Opposite Philosophies",
+        body: `<p>The easy story would be: One person is efficiency-driven. The other is meaning-driven. But that's too binary.</p>
+<p>Sophia does care about productivity. She just doesn't define her life by maximizing it. Ethan does care about meaning. He just doesn't see efficiency as threatening it.</p>
+<p>The real difference is one of <em>intensity and default orientation</em>, not belief.</p>
+<p>Ethan's instinct when he sees a new AI capability: <em>"How can this reshape my workflow?"</em><br/>
+Sophia's instinct: <em>"Interesting. Does this actually improve my life — or just make it busier?"</em></p>
+<p>Both questions are rational.</p>`,
+      },
+      {
+        heading: "2. Why Upbringing and Education Matter (But Don't Dictate)",
+        body: `<p>In many Western mainstream education systems — especially U.S./Western Europe — students are trained to: examine ethics alongside innovation, critique systems and power, publicly debate technology's social impact, ask "should we?" as much as "can we?"</p>
+<p>That produces people who are comfortable holding AI as a moral and human question.</p>
+<p>In faster-moving, application-heavy environments — including much of China's recent development context — the cultural emphasis has often been: landing technology quickly, prioritizing deployment and scale, optimizing for efficiency and impact, iterating in practice.</p>
+<p>That produces people who are comfortable holding AI as a capability question.</p>
+<p>But here's the key: most individuals — especially globally mobile, highly educated ones — carry both frameworks. So this isn't "East vs West" or "humanities vs STEM." It's about:</p>
+<ul>
+<li>What do you instinctively foreground: risk or opportunity?</li>
+<li>Do you experience tools as liberating or destabilizing?</li>
+<li>Is productivity a central life value — or just one value among many?</li>
+</ul>`,
+      },
+      {
+        heading: "3. Productivity Isn't a Universal North Star",
+        body: `<p>One quiet but powerful difference between people is how central productivity is to their identity.</p>
+<p>For Ethan, productivity gains feel meaningful because they expand optionality, reduce friction, create strategic leverage, and increase long-term agency. AI fits neatly into that worldview.</p>
+<p>For Sophia, productivity is useful — but not existential. Her life priorities might include coherence, relationships, aesthetic quality of experience, psychological depth. If AI saves 30% time but adds 30% cognitive noise, that's not automatically a win.</p>
+<p>So when Ethan enthusiastically talks about vibe-coding, it's not that Sophia doesn't understand the value. It's that she doesn't experience the marginal gain as life-changing. She's not against acceleration. She just doesn't worship it.</p>`,
+      },
+      {
+        heading: "4. A Small Domestic Scene",
+        body: `<p>Imagine this: Ethan shows Sophia a prototype he built with AI tools over a weekend.</p>
+<p><em>"It took me two hours. Imagine what this could do if we scaled it."</em></p>
+<p>Sophia smiles. She's genuinely impressed.</p>
+<p><em>"That's really cool. But do you actually need to build this?"</em></p>
+<p>That question can sound like resistance. But it's often calibration.</p>
+<p>Ethan's joy is in possibility. Sophia's calibration is about alignment. She still uses AI — she just hasn't reorganized her self-concept around becoming AI-native. And that's normal.</p>`,
+      },
+      {
+        heading: "5. It's Healthy to Have Both Tendencies",
+        body: `<p>Most thoughtful people carry both instincts: excitement about leverage, caution about meaning.</p>
+<p>Some days, Ethan questions whether optimization is becoming compulsive. Some days, Sophia wonders if she's underutilizing tools that could free mental space. This oscillation is healthy.</p>
+<p>A society composed only of accelerationists risks flattening human nuance. A society composed only of skeptics risks stagnation.</p>
+<p>Likewise in a relationship: one person pushes experimentation, the other protects integration. Both occasionally borrow from each other. The goal isn't ideological alignment. It's mutual awareness.</p>`,
+      },
+      {
+        heading: "6. The Real Questions",
+        body: `<p>The real question isn't adoption speed. It's:</p>
+<ul>
+<li>Does AI increase your agency without eroding your judgment?</li>
+<li>Does it free time for what matters — or just create more to optimize?</li>
+<li>Are you using AI to expand your life — or to avoid uncomfortable thinking?</li>
+</ul>
+<p>For Ethan, the risk is over-optimization. For Sophia, the risk is under-leverage. Neither risk is dramatic. They're bias drifts.</p>`,
+      },
+      {
+        heading: "7. What This Means for a Relationship (or Team)",
+        body: `<p>When two thoughtful people have different AI temperatures, it's easy to misread each other.</p>
+<p>Ethan might unconsciously interpret moderation as: <em>"Why aren't you more ambitious with this?"</em><br/>
+Sophia might unconsciously interpret enthusiasm as: <em>"Why is everything becoming a system?"</em></p>
+<p>But neither interpretation is accurate. The deeper dynamic is: one person experiences acceleration as empowerment; the other experiences calibration as wisdom. That's not conflict. That's complementary design — if it's conscious.</p>
+<p>The healthiest version of this dynamic:</p>
+<ul>
+<li><strong>Ethan's contribution:</strong> Push experiments. Explore edge cases. Prototype new workflows. Accept initial messiness.</li>
+<li><strong>Sophia's contribution:</strong> Evaluate long-term alignment. Filter hype from signal. Protect quality of thought. Maintain human rhythm.</li>
+</ul>
+<p>The danger isn't difference. The danger is when one default becomes invisible and assumed to be universal.</p>`,
+      },
+      {
+        heading: "8. The Long-Term Arc: Convergence, Not Conversion",
+        body: `<p>Over time, thoughtful couples (or co-founders) rarely convert each other. They converge.</p>
+<p>Sophia may never vibe-code obsessively — and that's fine. But she might gradually integrate deeper AI usage once it proves itself organically. Ethan may always experiment first — but he may become more selective about where acceleration actually improves life quality.</p>
+<p>What emerges isn't a compromise. It's a new shared standard:</p>
+<blockquote>AI is powerful. Productivity matters. Meaning matters more. Not everything that can be optimized should be.</blockquote>`,
+      },
+      {
+        heading: "9. A Quiet Truth About AI and Identity",
+        body: `<p>AI doesn't just change productivity. It subtly shifts identity.</p>
+<p>If you adopt it deeply, you may begin to define yourself as: AI-native, early mover, systems thinker, leverage maximizer.</p>
+<p>If you adopt it moderately, you may define yourself as: grounded, intentional, human-centered, resistant to unnecessary acceleration.</p>
+<p>Neither identity is inherently superior. But once identity attaches, behavior becomes emotional. That's when debates feel larger than tools.</p>`,
+      },
+      {
+        heading: "Final Reflection",
+        body: `<p>AI adoption isn't a moral ranking. It's a reflection of your tolerance for ambiguity, your attachment to agency, your relationship to time, your definition of a meaningful life.</p>
+<p>Some people optimize for leverage. Some optimize for coherence. Most of us oscillate between both.</p>
+<p>The goal isn't to match intensity. The goal is to become conscious of your defaults — and decide, deliberately, when to override them.</p>
+<p>Because in the end, AI won't decide who you become. But the way you use it just might.</p>`,
+      },
+    ],
+  },
+  {
     slug: "encounter-with-abcs",
     title: "Encounter with ABCs: The Entitlement of Assimilation",
     date: "2024",
