@@ -8,7 +8,8 @@ Sections:
 - About Me
 - Links (similar to the display of Jin Gao's website)
     - LinkedIn: https://www.linkedin.com/in/eden-huang/
-    - GitHub
+    - GitHub: https://github.com/edenhuangSH
+    - Instagram: https://www.instagram.com/edenhuangmn/
 
 I'll use Vercel to deploy the websites thru GitHub
 

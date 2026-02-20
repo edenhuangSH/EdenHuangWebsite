@@ -4,12 +4,12 @@ const sections = [
   {
     href: "/tech",
     label: "Tech",
-    description: "Tools and projects I've built.",
+    description: "Utility tools and projects I've vibe-coded into existence.",
   },
   {
     href: "/insights",
     label: "Insights",
-    description: "Research and observations across industries.",
+    description: "Research and observations across MedTech, AI, and capital.",
   },
   {
     href: "/stories",
@@ -19,7 +19,7 @@ const sections = [
   {
     href: "/about",
     label: "About Me",
-    description: "A bit about who I am.",
+    description: "Founder, operator, builder — who I am and what I work on.",
   },
   {
     href: "/links",
@@ -36,9 +36,11 @@ export default function Home() {
         <h1 className="text-2xl font-medium text-stone-900 tracking-tight mb-3">
           Eden Huang
         </h1>
-        <p className="text-sm text-stone-500 leading-relaxed max-w-sm">
-          Building tools, exploring ideas, and writing about what I find
-          along the way.
+        <p className="text-sm text-stone-500 leading-relaxed max-w-md">
+          MedTech founder and AI-native operator building non-invasive
+          neuromodulation systems across China, the U.S., and Australia.
+          Working at the intersection of digital health, regulatory strategy,
+          and cross-border venture building.
         </p>
       </div>
 
