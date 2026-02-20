@@ -8,6 +8,8 @@ export type InsightArticle = {
   category: string;
   excerpt: string;
   content: { heading?: string; body: string }[];
+  /** Relative path inside /public — if set, the page renders this HTML file instead of content[] */
+  htmlFile?: string;
 };
 
 export const insightArticles: InsightArticle[] = [
@@ -20,12 +22,8 @@ export const insightArticles: InsightArticle[] = [
     tags: ["Geopolitics", "China", "US", "EU", "Frameworks"],
     category: "Geopolitics & Civilization",
     excerpt: "A multi-dimensional framework assessing China, the US, the EU, and Russia across five dimensions — from state mobilization capacity to long-term social resilience. Includes bull/bear scenario projections through 2035.",
-    content: [
-      {
-        body: `<p>（本文为HTML格式发布，请通过下方链接访问完整版本。）</p>
-<p>CIVIL模型从制度路径、科技主导力与产业逻辑三大维度，对中国、美国、欧盟和俄罗斯进行了系统性的多维竞合分析，并基于不同情景给出了至2035年的牛市与熊市预测。</p>`,
-      },
-    ],
+    htmlFile: "articles/civil-model.html",
+    content: [],
   },
   {
     slug: "nationalism-revival-civilization",

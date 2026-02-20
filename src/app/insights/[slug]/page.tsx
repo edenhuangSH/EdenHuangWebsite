@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import ShareBar from "@/components/ShareBar";
+import fs from "fs";
+import path from "path";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -26,6 +28,16 @@ export default async function InsightArticlePage({ params }: Props) {
   const { slug } = await params;
   const article = getInsightArticle(slug);
   if (!article) notFound();
+
+  // If the article ships an external HTML file, read it server-side
+  let embeddedHtml: string | null = null;
+  if (article.htmlFile) {
+    const filePath = path.join(process.cwd(), "public", article.htmlFile);
+    const raw = fs.readFileSync(filePath, "utf-8");
+    // Strip <html><head>…</head><body> wrapper, keep body content only
+    const bodyMatch = raw.match(/<body[^>]*>([\s\S]*)<\/body>/i);
+    embeddedHtml = bodyMatch ? bodyMatch[1].trim() : raw;
+  }
 
   return (
     <article className="py-12">
@@ -79,21 +91,28 @@ export default async function InsightArticlePage({ params }: Props) {
       </p>
 
       {/* Content */}
-      <div className="space-y-8">
-        {article.content.map((section, i) => (
-          <div key={i}>
-            {section.heading && (
-              <h2 className="text-base font-semibold text-stone-800 mb-3">
-                {section.heading}
-              </h2>
-            )}
-            <div
-              className="prose-insight text-sm text-stone-600 leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: section.body }}
-            />
-          </div>
-        ))}
-      </div>
+      {embeddedHtml ? (
+        <div
+          className="prose-civil text-sm text-stone-700 leading-relaxed"
+          dangerouslySetInnerHTML={{ __html: embeddedHtml }}
+        />
+      ) : (
+        <div className="space-y-8">
+          {article.content.map((section, i) => (
+            <div key={i}>
+              {section.heading && (
+                <h2 className="text-base font-semibold text-stone-800 mb-3">
+                  {section.heading}
+                </h2>
+              )}
+              <div
+                className="prose-insight text-sm text-stone-600 leading-relaxed"
+                dangerouslySetInnerHTML={{ __html: section.body }}
+              />
+            </div>
+          ))}
+        </div>
+      )}
     </article>
   );
 }
